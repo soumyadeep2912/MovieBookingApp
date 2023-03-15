@@ -46,6 +46,12 @@ public class MovieRepository {
         mongoTemplate.remove(query, Movie.class);
 
     }
+    public Movie findMovieByRating(int rating){
+        Query query=new Query();
+        query.addCriteria(Criteria.where("rating").is(rating));
+        Movie movie=mongoTemplate.findOne(query,Movie.class);
+        return movie;
+    }
 
 
 }

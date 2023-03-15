@@ -65,6 +65,13 @@ public class MovieController {
       MovieDto movieDto=convertEntityToMovieDto(movie);
     return new ResponseEntity(movieDto,HttpStatus.OK);
    }
+   @GetMapping("/getRating/{rating}")
+   public ResponseEntity getMovieBasedOnRating(@PathVariable(name="rating")int rating){
+      Movie movie=movieService.getMovieByRating(rating);
+      MovieDto movieDto=convertEntityToMovieDto(movie);
+      return new ResponseEntity(movieDto,HttpStatus.OK);
+
+   }
 
 
    @PutMapping("/update/{movie_id}")

@@ -56,6 +56,10 @@ public class MovieService {
         movieRepository.deleteById(movieId);
         return true;
     }
+    public Movie getMovieByRating(int rating){
+        Movie savedMovie=movieRepository.findMovieByRating(rating);
+        return savedMovie;
+    }
 
 
 }
