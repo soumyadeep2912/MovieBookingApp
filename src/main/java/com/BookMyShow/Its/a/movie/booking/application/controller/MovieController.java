@@ -40,6 +40,11 @@ public class MovieController {
       }
       return new ResponseEntity(allMovieDto,HttpStatus.OK);
    }
+    @DeleteMapping("/{movie_id}")
+    public String deleteMovieDetails(@PathVariable(name="movie_id")String movieId){
+        movieService.deleteMovieDetails(movieId);
+        return "deleted";
+    }
    @GetMapping("/getMovie")
    public ResponseEntity getMoviesBasedOnMovieName(@RequestParam(name="movie_name")String movieName){
       Movie movie=movieService.getMovieByMovieName(movieName);

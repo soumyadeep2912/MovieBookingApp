@@ -40,7 +40,12 @@ public class MovieRepository {
         Movie movie=mongoTemplate.findOne(query, Movie.class);
         return movie;
     }
+    public void deleteById(String movieId){
+        Query query=new Query();
+        query.addCriteria(Criteria.where("movieId").is(movieId));
+        mongoTemplate.remove(query, Movie.class);
 
+    }
 
 
 }

@@ -52,6 +52,10 @@ public class MovieService {
         Movie savedMovie=movieRepository.findMovieByDuration(duration);
         return savedMovie;
     }
+    public boolean deleteMovieDetails(String movieId){
+        movieRepository.deleteById(movieId);
+        return true;
+    }
 
 
 }
