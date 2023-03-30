@@ -49,7 +49,7 @@ public class TheatreService {
     public List<Theatre> getTheatres(){
         return theatreRepository.getTheatres();
     }
-    public Theatre getTheatre(String theatreName){
+    public Theatre getTheatreName(String theatreName){
         return theatreRepository.findByName(theatreName);
     }
 

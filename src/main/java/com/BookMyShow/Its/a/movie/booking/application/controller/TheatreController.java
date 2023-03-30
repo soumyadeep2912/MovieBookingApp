@@ -71,7 +71,7 @@ public class TheatreController {
     @GetMapping("/{theatre_name}")
     public ResponseEntity theatreDetails(@PathVariable(name="theatre_name")String theatreName){
 
-        Theatre response=theatreService.getTheatre(theatreName);
+        Theatre response=theatreService.getTheatreName(theatreName);
 
         TheatreDto theatre=convertEntityToTheatreDto(response);
         return new ResponseEntity(theatre,HttpStatus.OK);
