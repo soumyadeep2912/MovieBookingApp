@@ -1,13 +1,15 @@
 package com.BookMyShow.Its.a.movie.booking.application.dto;
 
+import com.BookMyShow.Its.a.movie.booking.application.model.Movie;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TheatreDto {
     @JsonProperty("theatre_id")
-    private ObjectId _id;
+    private String theatreId;
     @JsonProperty("theatre_name")
     private String name;
     @JsonProperty("movies_onscreen")
@@ -21,21 +23,30 @@ public class TheatreDto {
 
     @JsonProperty("movie_list")
     private ArrayList<String> movieScreening;
-
-    public ObjectId get_id() {
-        return _id;
-    }
+    @JsonProperty("movies")
+    private List<String> movies=new ArrayList<>();
 
     @Override
     public String toString() {
-        return "Theatre{" + "_id=" + _id + ", name='" + name + '\'' + ", screenCount=" + screenCount + ", city='" +
-               city + '\'' + ", address='" + address + '\'' + ", movieScreening=" + movieScreening + '}';
+        return "TheatreDto{" + "theatreId='" + theatreId + '\'' + ", name='" + name + '\'' + ", screenCount=" +
+               screenCount + ", city='" + city + '\'' + ", address='" + address + '\'' + ", movieScreening=" +
+               movieScreening + ", movies=" + movies + '}';
     }
 
+    public List<String> getMovies() {
+        return movies;
+    }
 
+    public void setMovies(List<String> movies) {
+        this.movies = movies;
+    }
 
-    public void set_id(ObjectId _id) {
-        this._id = _id;
+    public String getTheatreId() {
+        return theatreId;
+    }
+
+    public void setTheatreId(String theatreId) {
+        this.theatreId = theatreId;
     }
 
     public String getName() {

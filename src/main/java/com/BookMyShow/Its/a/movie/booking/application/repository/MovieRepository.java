@@ -6,11 +6,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Repository
 public class MovieRepository {
     @Autowired
     MongoTemplate mongoTemplate;
@@ -51,6 +52,11 @@ public class MovieRepository {
         query.addCriteria(Criteria.where("rating").is(rating));
         Movie movie=mongoTemplate.findOne(query,Movie.class);
         return movie;
+    }
+    public List<Movie>findByTheatreId(String theatreId){
+        Query query=new Query();
+        query.addCriteria(Criteria.where("theatreId").is(theatreId));
+        return mongoTemplate.find(query, Movie.class);
     }
 
 

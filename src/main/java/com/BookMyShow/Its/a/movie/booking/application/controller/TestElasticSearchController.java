@@ -23,12 +23,25 @@ public class TestElasticSearchController {
     @Autowired
     ElasticsearchClient client;
     @PostMapping("/add")
-    public ResponseEntity addMovie(@RequestBody MovieDto movie) throws IOException {
+    public String addMovie(@RequestBody MovieDto movie) throws IOException {
        System.out.println(movie.toString());
        IndexResponse response = client.index(i -> i.index("movie_2").document(movie));
 
-       return new ResponseEntity(response, HttpStatus.OK);
+       return "added";
    }
+   @GetMapping("/{movieName}")
+   public  String getMovie(@PathVariable String movieName) throws IOException {
+//        client.search(s->s.index("movie_2")
+//                                                        .query(q->q
+//                                                                .term(t->t
+//                                                                        .field("movie_name.keyword").value(v->v.stringValue(movieName)))),
+//                Movie.class);
+       SearchResponse searchResponse= client.search(s-> s.index("movie_2").query(q-> q.term(t -> t.field("movie_name").field("keyword").value(movieName))),
+                Movie.class);
+       System.out.println(searchResponse.hits().hits().toString());
+        return "getting this movie";
+   }
+
 
 
 

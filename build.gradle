@@ -16,8 +16,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.elasticsearch.client:transport:7.16.1'
 	implementation 'co.elastic.clients:elasticsearch-java:8.6.2'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

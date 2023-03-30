@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "movies")
@@ -19,20 +20,21 @@ public class Movie {
     private String movieDesc;
     private int rating;
 
+  private String theatreId;
     public Movie() {
     }
+
     public Movie(String movieId, String movieName, Double duration, String coverPhtUrl, String trailerUrl,
-                 String movieDesc,int rating) {
+                 String movieDesc, int rating, String theatreId) {
         this.movieId = movieId;
         this.movieName = movieName;
         this.duration = duration;
         this.coverPhtUrl = coverPhtUrl;
         this.trailerUrl = trailerUrl;
         this.movieDesc = movieDesc;
-        this.rating=rating;
+        this.rating = rating;
+        this.theatreId = theatreId;
     }
-
-
 
     public String getMovieId() {
         return movieId;
@@ -90,6 +92,14 @@ public class Movie {
         this.rating = rating;
     }
 
+    public String getTheatreId() {
+        return theatreId;
+    }
+
+    public void setTheatreId(String theatreId) {
+        this.theatreId = theatreId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -114,6 +124,6 @@ public class Movie {
     public String toString() {
         return "Movie{" + "movieId='" + movieId + '\'' + ", movieName='" + movieName + '\'' + ", duration=" + duration +
                ", coverPhtUrl='" + coverPhtUrl + '\'' + ", trailerUrl='" + trailerUrl + '\'' + ", movieDesc='" +
-               movieDesc + '\'' + ", rating=" + rating + '}';
+               movieDesc + '\'' + ", rating=" + rating + ", theatreId='" + theatreId + '\'' + '}';
     }
 }

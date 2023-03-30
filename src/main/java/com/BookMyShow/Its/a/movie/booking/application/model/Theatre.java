@@ -5,33 +5,41 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "theatres")
 public class Theatre {
 
     @Id
-    private ObjectId _id;
+    private String theatreId;
     private String name;
     private int screenCount;
     private String city;
     private String address;
     private ArrayList<String> movieScreening;
+    private List<String>movies=new ArrayList<>();
 
-    public ObjectId get_id() {
-        return _id;
-    }
 
-    @Override
-    public String toString() {
-        return "Theatre{" + "_id=" + _id + ", name='" + name + '\'' + ", screenCount=" + screenCount + ", city='" +
-               city + '\'' + ", address='" + address + '\'' + ", movieScreening=" + movieScreening + '}';
+    public Theatre(String theatreId, String name, int screenCount, String city, String address,
+                   ArrayList<String> movieScreening, List<String> movies) {
+        this.theatreId = theatreId;
+        this.name = name;
+        this.screenCount = screenCount;
+        this.city = city;
+        this.address = address;
+        this.movieScreening = movieScreening;
+        this.movies = movies;
     }
 
     public Theatre() {
     }
 
-    public void set_id(ObjectId _id) {
-        this._id = _id;
+    public String getTheatreId() {
+        return theatreId;
+    }
+
+    public void setTheatreId(String theatreId) {
+        this.theatreId = theatreId;
     }
 
     public String getName() {
@@ -74,4 +82,18 @@ public class Theatre {
         this.movieScreening = movieScreening;
     }
 
+    public List<String> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<String> movies) {
+        this.movies = movies;
+    }
+
+    @Override
+    public String toString() {
+        return "Theatre{" + "theatreId='" + theatreId + '\'' + ", name='" + name + '\'' + ", screenCount=" +
+               screenCount + ", city='" + city + '\'' + ", address='" + address + '\'' + ", movieScreening=" +
+               movieScreening + ", movies=" + movies + '}';
+    }
 }
