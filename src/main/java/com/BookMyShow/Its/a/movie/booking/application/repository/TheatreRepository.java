@@ -7,7 +7,12 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 
 @Repository
 public class TheatreRepository {
@@ -29,4 +34,14 @@ public class TheatreRepository {
 
 
     }
+    public List<Theatre> getTheatres(){
+        return mongoTemplate.findAll(Theatre.class);
+    }
+    public Theatre findByName(String theatreName){
+
+        Query query=new Query();
+        query.addCriteria(Criteria.where("theatre_name").is(theatreName));
+        return mongoTemplate.findOne(query, Theatre.class);
+    }
+
 }

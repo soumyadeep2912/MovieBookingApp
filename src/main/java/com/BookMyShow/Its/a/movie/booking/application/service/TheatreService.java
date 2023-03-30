@@ -46,4 +46,11 @@ public class TheatreService {
         return null;
     }
 
+    public List<Theatre> getTheatres(){
+        return theatreRepository.getTheatres();
+    }
+    public Theatre getTheatre(String theatreName){
+        return theatreRepository.findByName(theatreName);
+    }
+
 }

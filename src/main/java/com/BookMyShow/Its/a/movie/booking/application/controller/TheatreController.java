@@ -11,6 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -53,7 +57,25 @@ public class TheatreController {
         return ResponseEntity.ok(movies);
 
     }
+    @GetMapping("/all")
+    public ResponseEntity allTheatres(){
+        List<Theatre> allTheatres=theatreService.getTheatres();
+        List<TheatreDto> theatres=new ArrayList<TheatreDto>();
+        for(Theatre theatre: allTheatres){
+            TheatreDto the=convertEntityToTheatreDto(theatre);
+            theatres.add(the);
 
+        }
+        return new ResponseEntity(theatres, HttpStatus.OK);
+    }
+    @GetMapping("/{theatre_name}")
+    public ResponseEntity theatreDetails(@PathVariable(name="theatre_name")String theatreName){
+
+        Theatre response=theatreService.getTheatre(theatreName);
+
+        TheatreDto theatre=convertEntityToTheatreDto(response);
+        return new ResponseEntity(theatre,HttpStatus.OK);
+    }
     public Theatre convertTheatreDtoEntity(TheatreDto theatreDto){
         Theatre newTheatre=new Theatre();
         newTheatre.setCity(theatreDto.getCity());
