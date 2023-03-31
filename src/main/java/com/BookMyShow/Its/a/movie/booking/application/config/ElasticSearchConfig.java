@@ -8,6 +8,7 @@ import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.message.BasicHeader;
 import org.elasticsearch.client.RestClient;
+//import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,9 +18,7 @@ public class ElasticSearchConfig {
     public RestClient getRestClient() {
         RestClient restClient = RestClient.builder(
                 new HttpHost("localhost", 9200, "http"))
-                                          .setDefaultHeaders(new Header[]{
-                new BasicHeader("Content-type", "application/json")
-        }).build();
+                                          .build();
         return restClient;
     }
     @Bean
@@ -32,7 +31,11 @@ public class ElasticSearchConfig {
         ElasticsearchClient client = new ElasticsearchClient(getElasticsearchTransport());
         return client;
     }
-
-
+//    @Bean
+//    public RestHighLevelClient elasticsearchClient() {
+//        return new RestHighLevelClient(
+//                RestClient.builder(new HttpHost("localhost", 9200, "http")));
+//    }
+//
 
 }

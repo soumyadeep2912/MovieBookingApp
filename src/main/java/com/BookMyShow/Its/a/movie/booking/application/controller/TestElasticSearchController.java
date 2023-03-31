@@ -36,7 +36,7 @@ public class TestElasticSearchController {
 //                                                                .term(t->t
 //                                                                        .field("movie_name.keyword").value(v->v.stringValue(movieName)))),
 //                Movie.class);
-       SearchResponse searchResponse= client.search(s-> s.index("movie_2").query(q-> q.term(t -> t.field("movie_name").field("keyword").value(movieName))),
+       SearchResponse searchResponse= client.search(s-> s.index("movie_2"),
                 Movie.class);
        System.out.println(searchResponse.hits().hits().toString());
         return "getting this movie";
