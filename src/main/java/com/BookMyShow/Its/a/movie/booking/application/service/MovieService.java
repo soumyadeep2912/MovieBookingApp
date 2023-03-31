@@ -13,13 +13,12 @@ import java.util.List;
 
 @Service
 public class MovieService {
-    private static final Logger LOGGER= LoggerFactory.getLogger(MovieService.class);
+
     @Autowired
     MovieRepository movieRepository;
 
     public Movie createMovie(Movie movie) {
-        LOGGER.debug("movie object is passed for creation is"+movie);
-        LOGGER.info("create movie details is triggered");
+
         return movieRepository.save(movie);
     }
 
