@@ -1,5 +1,6 @@
 package com.BookMyShow.Its.a.movie.booking.application.service;
 
+import com.BookMyShow.Its.a.movie.booking.application.exception.MovieDetailsNotFoundException;
 import com.BookMyShow.Its.a.movie.booking.application.model.Movie;
 import com.BookMyShow.Its.a.movie.booking.application.repository.MovieRepository;
 import org.junit.jupiter.api.Assertions;
@@ -51,6 +52,12 @@ public class MovieServiceUnitTest {
         Assertions.assertEquals("0",savedMovie.getMovieId());
 
        // System.out.println(movieService);
+    }
+    @Test
+    public void testGetMovieDetails() throws MovieDetailsNotFoundException {
+        Mockito.when(movieRepository.findMovieById("0")).thenReturn(savedMovie);
+        Movie savedMovie=movieService.getMovieBasedOnId("0");
+        Assertions.assertNotNull(savedMovie);
     }
 
 }

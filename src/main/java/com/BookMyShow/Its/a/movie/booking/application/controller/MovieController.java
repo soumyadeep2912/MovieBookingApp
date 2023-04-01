@@ -2,9 +2,11 @@ package com.BookMyShow.Its.a.movie.booking.application.controller;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import com.BookMyShow.Its.a.movie.booking.application.dto.MovieDto;
+import com.BookMyShow.Its.a.movie.booking.application.exception.InvalidMovieNameProvidedException;
 import com.BookMyShow.Its.a.movie.booking.application.exception.MovieDetailsNotFoundException;
 import com.BookMyShow.Its.a.movie.booking.application.model.Movie;
 import com.BookMyShow.Its.a.movie.booking.application.service.MovieService;
+import com.BookMyShow.Its.a.movie.booking.application.validator.MovieDTOValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +24,10 @@ public class MovieController {
     ElasticsearchClient elasticsearchClient;
 
 
+
   @PostMapping("/created")
-    public ResponseEntity createMovieDetails(@RequestBody MovieDto movieDto){
+    public ResponseEntity createMovieDetails(@RequestBody MovieDto movieDto) throws InvalidMovieNameProvidedException {
+      MovieDTOValidator.isValid(movieDto);
      Movie movieEntity=convertMovieDtoToEntity(movieDto);
      Movie savedEntity=movieService.createMovie(movieEntity);
      MovieDto responseBody=convertEntityToMovieDto(savedEntity);
