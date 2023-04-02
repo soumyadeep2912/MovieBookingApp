@@ -27,7 +27,7 @@ public class MovieController {
 
   @PostMapping("/created")
     public ResponseEntity createMovieDetails(@RequestBody MovieDto movieDto) throws InvalidMovieNameProvidedException {
-      MovieDTOValidator.isValid(movieDto);
+    // MovieDTOValidator.isValid(movieDto);
      Movie movieEntity=convertMovieDtoToEntity(movieDto);
      Movie savedEntity=movieService.createMovie(movieEntity);
      MovieDto responseBody=convertEntityToMovieDto(savedEntity);
