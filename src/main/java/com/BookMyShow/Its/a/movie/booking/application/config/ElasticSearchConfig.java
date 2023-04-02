@@ -31,7 +31,7 @@ public class ElasticSearchConfig {
 
         BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
         credsProv.setCredentials(
-                AuthScope.ANY, new UsernamePasswordCredentials("elastic", "ilKWDcsF4fJz8I6ugip9" )
+                AuthScope.ANY, new UsernamePasswordCredentials("elastic", "soumyadeep123" )
         );
 
         RestClient restClient = RestClient
@@ -47,11 +47,6 @@ public class ElasticSearchConfig {
         ElasticsearchClient client = new ElasticsearchClient(transport);
         return client;
     }
-//    @Bean
-//    public RestHighLevelClient elasticsearchClient() {
-//        return new RestHighLevelClient(
-//                RestClient.builder(new HttpHost("localhost", 9200, "http")));
-//    }
-//
+
 
 }
