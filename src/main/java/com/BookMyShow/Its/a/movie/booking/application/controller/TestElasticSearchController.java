@@ -34,8 +34,7 @@ public class TestElasticSearchController {
     MongoTemplate mongoTemplate;
     @Autowired
     private RestClient restClient;
-    @Autowired
-    private ElasticsearchOperations elasticsearchOperations;
+
     @PostMapping("/add")
     public String addMovie(@RequestBody MovieDto movie) throws IOException {
        System.out.println(movie.toString());
